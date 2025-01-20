@@ -119,3 +119,19 @@ function loadRecipesFromLocalStorage() {
 
   return savedRecipes ? JSON.parse(savedRecipes) : [];
 }
+
+document.getElementById("search-bar").addEventListener("input", function (e) {
+  const searchTerm = e.target.value.toLowerCase();
+
+  const recipeListItems = document.querySelectorAll("#recipe-list li");
+
+  recipeListItems.forEach((item) => {
+    const textContent = item.textContent.toLowerCase();
+
+    if (textContent.includes(searchTerm)) {
+      item.style.display = ""; // Show matching items
+    } else {
+      item.style.display = "none"; // Hide non-matching items
+    }
+  });
+});
